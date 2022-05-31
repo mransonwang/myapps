@@ -1,0 +1,15 @@
+dependencies:
+- name: mysql
+  repository: file://charts/mysql
+  version: 0.1.0
+- name: redis
+  repository: file://charts/redis
+  version: 0.1.0
+- name: consul
+  repository: https://helm.releases.hashicorp.com
+  version: 0.42.0
+- name: designer
+  repository: file://charts/designer
+  version: 0.1.0
+digest: sha256:831ef69f20388c4d5c56ade6a6a3d5ce918f07535ebbcf35986966b1e2751c60
+generated: "2022-05-31T21:09:43.0980159+08:00"

@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: runtime
+  labels:
+    app: runtime
+spec:
+  ports:
+    - port: 8083
+      name: http
+  selector:
+    app: runtime
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runtime
+  labels:
+    app: runtime
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: runtime
+  template:
+    metadata:
+      labels:
+        app: runtime
+    spec:
+      containers:
+        - name: app
+          image: quay.io/jonkey/apps-runtime
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8083
+          env:
+            - name: myapps.storage.root
+              value: /storage
+            - name: spring.datasource.url
+              value: jdbc:mysql://mysql:3306/mydb?characterEncoding=UTF-8&serverTimezone=GMT
+            - name: spring.datasource.username
+              value: "mysql"
+            - name: spring.datasource.password
+              value: "mysql"
+            - name: spring.redis.host
+              value: redis
+            - name: spring.cloud.consul.host
+              value: consul-server
+          # livenessProbe:
+          #   httpGet:
+          #     path: /obpm/actuator/health
+          #     port: 8083
+          #     scheme: HTTP
+          # initialDelaySeconds: 20
+          # readinessProbe:
+          #   httpGet:
+          #     path: /obpm/actuator/health
+          #     port: 8083
+          #     scheme: HTTP
+          # initialDelaySeconds: 20
+          volumeMounts:
+          - name: storage
+            mountPath: /storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: storage

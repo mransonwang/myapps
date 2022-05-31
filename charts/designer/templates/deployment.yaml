@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: designer
+  labels:
+    app: designer
+spec:
+  ports:
+    - port: 8082
+      name: http
+  selector:
+    app: designer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: designer
+  labels:
+    app: designer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: designer
+  template:
+    metadata:
+      labels:
+        app: designer
+    spec:
+      containers:
+        - name: app
+          image: quay.io/jonkey/apps-designer
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          env:
+            - name: myapps.storage.root
+              value: /storage
+            - name: spring.datasource.url
+              value: jdbc:mysql://mysql:3306/mydb?characterEncoding=UTF-8&serverTimezone=GMT
+            - name: spring.datasource.username
+              value: "mysql"
+            - name: spring.datasource.password
+              value: "mysql"
+            - name: spring.redis.host
+              value: redis
+            - name: spring.cloud.consul.host
+              value: consul-server
+          livenessProbe:
+            httpGet:
+              path: /designer/actuator/health
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /designer/actuator/health
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 60
+          volumeMounts:
+          - name: storage
+            mountPath: /storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: storage
