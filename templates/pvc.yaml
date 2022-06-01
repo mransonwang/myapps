@@ -3,7 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: storage
 spec:
-  storageClassName: nfs-storage-provisioner
+  {{- if .Values.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}
+  {{- end }}
   accessModes:
   - ReadWriteMany
   resources:
