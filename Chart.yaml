@@ -26,25 +26,25 @@ appVersion: "1.16.0"
 dependencies:
   - name: mysql
     version: 0.1.0
-    repository: file://charts/mysql
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: redis
     version: 0.1.0
-    repository: file://charts/redis
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: consul
     version: 0.42.0
     repository: https://helm.releases.hashicorp.com
   - name: designer
     version: 0.1.0
-    repository: file://charts/designer
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: gateway
     version: 0.1.0
-    repository: file://charts/gateway
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: runtime
     version: 0.1.0
-    repository: file://charts/runtime
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: signon
     version: 0.1.0
-    repository: file://charts/signon
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/
   - name: static
     version: 0.1.0
-    repository: file://charts/static
+    repository: https://dl.cloudsmith.io/public/redhat/oxygen/helm/charts/

@@ -1,13 +1,13 @@
 storageClassName: nfs-storage-provisioner
 
-mysql:
-  mysqlVersion: 8.0-el8
-  mysqlRootPassword: mysql
-  mysqlUser: mysql
-  mysqlPassword: mysql
-  mysqlDatabase: mydb
-  databaseServiceName: mysql
-  volumeCapacity: 10Gi
+#mysql:
+#  mysqlVersion: 8.0-el8
+#  mysqlRootPassword: mysql
+#  mysqlUser: mysql
+#  mysqlPassword: mysql
+#  mysqlDatabase: mydb
+#  databaseServiceName: mysql
+#  volumeCapacity: 10Gi
 
 consul:
   global:

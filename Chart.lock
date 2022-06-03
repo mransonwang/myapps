@@ -11,5 +11,17 @@ dependencies:
 - name: designer
   repository: file://charts/designer
   version: 0.1.0
-digest: sha256:831ef69f20388c4d5c56ade6a6a3d5ce918f07535ebbcf35986966b1e2751c60
-generated: "2022-05-31T21:09:43.0980159+08:00"
+- name: gateway
+  repository: file://charts/gateway
+  version: 0.1.0
+- name: runtime
+  repository: file://charts/runtime
+  version: 0.1.0
+- name: signon
+  repository: file://charts/signon
+  version: 0.1.0
+- name: static
+  repository: file://charts/static
+  version: 0.1.0
+digest: sha256:763acda6d19c7b1d7133b43cab603867638a4abb66fb014f0235457f325073fd
+generated: "2022-06-02T22:53:35.7236106+08:00"
